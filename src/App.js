@@ -1,8 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import axios from "axios";
-
+import AddSongEntryForm from './components/AddSongEntryForm';
 
 function App() {
+
+function AddNewSongEntryForm(entry) {
+  
+  let tempsong = [...AddMusic, entry];
+
+  setAddMusic(tempsong);
+}
 
 const[AddMusic, setAddMusic]= useState([]);
 useEffect(()=>{
@@ -20,8 +27,9 @@ async function fetchAddMusic(){
     
     return (
     <div>
+      <AddSongEntryForm childpropertyone={AddNewSongEntryForm}/>
       {AddMusic.map((el)=>{
-        return<h1>{el.title}</h1>
+        return<h1>{el.title} {el.artist} {el.album} {el.release_date}{el.genre} </h1>
       })}
     </div>
   );
