@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react'; 
 import axios from "axios";
 import AddSongEntryForm from './components/AddSongEntryForm';
 import MusicTable from './components/musictable/MusicTable';
@@ -7,11 +7,12 @@ import SearchBar from './components/Searchbar';
 
 function App() {
 
-function AddNewSongEntryForm(entry) {
+async function AddNewSongEntryForm(entry) {
   
-  let tempsong = [...AddMusic, entry];
-
-  setAddMusic(tempsong);
+  let response = await axios.post("http://127.0.0.1:8000/api/songs/", entry);
+  if(response.status === 201){
+  await fetchAddMusic();
+  }
 }
 
 const[AddMusic, setAddMusic]= useState([]);
@@ -27,20 +28,39 @@ async function fetchAddMusic(){
   debugger;
   setAddMusic(response.data);
 }
-    
+
+function filterMusic(search) {
+  debugger
+    let filteredSongs = AddMusic.filter((song)=>{
+      if(song.title.includes(search)) {
+        return true;
+      } else {
+        return false;
+      }
+      });
+      debugger
+      setAddMusic(filteredSongs)
+    }
+  
+
+
+
     
     return(
-    <div className='container-fluid'>
+    <div className='container-fluid App'>
       <div className='row'>
+        <h3 style={{margin: '1em'}}>MyJams</h3>
       <div className='col-md-6'>
+        <div className='border-box'>
       <AddSongEntryForm childpropertyone={AddNewSongEntryForm}/>
       </div>
-        <div className='col-md-6'>
-          <SearchBar/>
+        <div className='col-6.col-md-4'>
+          <div className = 'border-box'>
+          
+          <SearchBar filterMusic={filterMusic}/>
+          
           <MusicTable ParentDrop={AddMusic}/>
           </div>
-          <div className='col-md-6'>
-            <div className='border-box'>
             {AddMusic.map((el)=>{
           return<h1>{}</h1>
          })}
@@ -50,5 +70,6 @@ async function fetchAddMusic(){
   </div>
   );
 }
+
 
 export default App;

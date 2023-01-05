@@ -1,23 +1,24 @@
-import React from 'react' 
+import React, { useState } from 'react' 
 import './SearchBar.css'
-import SearchIcon from '@mui/icons-material/Search';
 
-function SearchBar({placeholder, data}) {
+
+function SearchBar(props) {
+  const[searchInputs, setSearchInputs] = useState("");
+    function handleSubmit(event){
+       event.preventDefault()
+       props.filterMusic(searchInputs)
+  }
+
     return(
         <div className="search">
-            <div className="searchsongs">
-                <input type="text" placeholder={placeholder}/>
-                <div className="searchIcon">
-                    <SearchIcon/>
-                </div>
-                "</div>
-            <div className="Songresults">
-                {data.map((value, key)=>{
-                    return <div>{Value.title}</div>
-                })}
-            </div>
-        </div>
-        );
+            <form onSubmit = {handleSubmit}className="searchInputs">
+                <input
+                 type="text" 
+                onChange={(event)=>setSearchInputs(event.target.value)}/>
+             <button type="submit">Search</button>
+             </form>
+             </div>
+       );
 }
 
 export default SearchBar;

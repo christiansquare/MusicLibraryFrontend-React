@@ -5,7 +5,7 @@
 
 
 .search input{
-    background-color: white;
+    background-color: hsl(0, 100%, 97%);
     border: 0;
     border-radius: 2px;
     border-top-right-radius: 0;
@@ -20,7 +20,7 @@
 .searchIcon{
     height: 60px;
     width: 50px;
-    background-color: white;
+    background-color: 90deg,#c66cae,#270e40;
     display: grid;
     place-items: center;
 }

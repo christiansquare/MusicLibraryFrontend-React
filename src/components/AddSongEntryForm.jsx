@@ -26,7 +26,7 @@ function handleSubmit(event){
     return (
          <form onSubmit={handleSubmit}>
             <label>Title</label>
-            <input type={""} value={title} onChange={(event)=>setTitle(event.target.value)}/>
+            <input type={[""]} value={title} onChange={(event)=>setTitle(event.target.value)}/>
             <label>Artist</label>
             <input type={[""]} value={artist} onChange={(event)=>setArtist(event.target.value)}/>
             <label>Album</label>
@@ -35,7 +35,7 @@ function handleSubmit(event){
             <input type="date" value={release_date} onChange={(event)=>setRelease_Date(event.target.value)}/>
             <label>Genre</label>
             <input type={[""]} value={genre} onChange={(event)=>setGenre(event.target.value)}/>
-            <button type='submit'>Add Song</button>
+            <button type='submit'style={{'margin-top': '1em' }}>Add Song</button>
          </form>
       );
 }

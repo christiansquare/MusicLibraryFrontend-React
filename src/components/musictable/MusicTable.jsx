@@ -1,7 +1,7 @@
 const MusicTable = (props) => {
     return ( 
         <div>
-            <table>
+            <table className="table">
                 <thead>
                     <tr>
                         <th>title</th>
